@@ -1,0 +1,172 @@
+﻿<!doctype html>
+
+<html>
+<head>
+    <title>Report</title>
+    <meta name="GENERATOR" content="Microsoft Visual Studio .NET 7.1">
+    <meta name="CODE_LANGUAGE" content="Visual Basic .NET 7.1">
+    <meta name="vs_defaultClientScript" content="JavaScript">
+    <meta name="vs_targetSchema" content="http://schemas.microsoft.com/intellisense/ie5">
+
+
+
+    <link href="@Url.Content("~")Content/Report.css" rel="stylesheet" />
+    <!-- In your Razor view file (.cshtml) -->
+    <link rel="stylesheet" href="~/Content/font-awesome.min.css" />
+
+    <style type="text/css" media="print">
+
+        @@page {
+            size: letter;
+            margin: 5mm 5mm 10mm 5mm; /* this affects the margin in the printer settings */
+        }
+
+        #divParams {
+            display: none;
+        }
+    </style>
+
+    <style>
+        body {
+            font-family: monospace;
+            font-size: 11px;
+        }
+
+        #Outline {
+            width: 330px;
+        }
+
+        #divParams {
+            width: 200px;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: #47739f;
+            padding: 15px 25px 15px 15px;
+            border-radius: 5px;
+            border: 2px solid #47739f;
+            color: white;
+            font-family: monospace;
+            font-size: 15px;
+        }
+
+            #divParams input {
+                width: 100%;
+                margin-top: 5px;
+                margin-bottom: 10px;
+                border: 0px solid silver;
+                padding: 5px 5px 5px 5px;
+            }
+
+        #tblItems thead tr:last-child th {
+            border-bottom: 2px dotted gray;
+            padding-bottom: 12px;
+        }
+
+        #tblItems tbody tr:last-child td,
+        #tblTotal tbody tr:last-child td, #tblTotal tbody tr:last-child th {
+            border-bottom: 2px dotted gray;
+            padding-bottom: 12px;
+        }
+    </style>
+
+    @*@Styles.Render("~/Content/jeddah.css?v=" + System.DateTime.Now.Second.ToString())*@
+
+</head>
+<body id="body">
+
+
+    <table id="Outline" style="z-index: 101; left: 8px; top: 8px; border-collapse: collapse" bordercolor="silver" cellspacing="0" cellpadding="10" width="100%" align="center">
+        <tbody>
+            <tr valign="top">
+                <td width="100%" valign="top">
+
+
+
+                    <div class="divHeader">
+                        <div class="actionBar">
+                            <input class="btnPrint" onclick="CallPrint()" type="button" value="Print">
+                            <input class="btnPrint" onclick="window.location='@Url.Action("index","pos")'" type="button" value="Close" style="float:right">
+                            <div style="clear: both;"></div>
+                        </div>
+                        <table id="Outline1" style="border-collapse: collapse" bordercolor="silver" cellspacing="0" cellpadding="3" width="100%" border="0">
+                            <tbody>
+                                <tr valign="top">
+                                    <td valign="top" width="100%" colspan="4" style="text-align:center">
+                                        <br>
+                                        <table width="100%">
+                                            <tbody>
+                                                <tr>
+                                                    <td style="">
+
+                                                        <img style="-webkit-user-select: none" src="@Url.Content("~")assets/img/logo.png" height="50px" />
+                                                        <div class="clearfix"></div>
+
+                                                    </td>
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                        @*<hr style="border: 2px solid #0a1e60; margin-bottom:0px;">*@
+                                        <div class="clearfix margin-5"></div>
+                                        @RenderSection("master", true)
+                                        
+                                        <hr />
+                                        @RenderSection("lines", true)
+
+
+                                        <div class="clearfix margin-10"></div>
+                                        <div class="text-left">
+                                            <br />
+                                            <b>Exchange / Return Policy</b><br />
+                                            Original Receipt is Required, Items should be in original Packages, Items will be exchange within similar in case of manufacturer defect.
+                                            <br /><br />
+                                            <div dir="rtl" class="text-right">
+                                                <b>تبادل / عودة السياسة</b><br />
+                                                الإيصال الأصلي مطلوب ، يجب أن تكون العناصر في عبوات أصلية ، وسيتم استبدال العناصر في نفس الحالة في حالة عيب الشركة المصنعة.
+                                            </div>
+                                            <br /><br />
+                                            <b>
+                                                Refund within 3 Days<br />
+                                                Exchange within 7 Days
+                                            </b>
+
+                                        </div>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+
+                    </div>
+
+                    <div class="divData">
+                        @RenderBody()
+                    </div>
+
+
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <script src="@Url.Content("~")Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //CallPrint();
+        });
+        function CallPrint() {
+            window.print();
+
+        }
+
+    </script>
+    @RenderSection("script", false)
+
+
+</body>
+</html>

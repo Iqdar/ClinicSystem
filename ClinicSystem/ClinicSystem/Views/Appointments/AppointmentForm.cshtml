@@ -1,0 +1,65 @@
+﻿@model ClinicSystem.Models.ViewModels.AppointmentViewModel;
+
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+
+<div class="card">
+    <div class="card-header">
+        @if (Model.Appointment.Id == 0)
+        {
+            <h2>New Patient</h2>
+        }
+        else
+        {
+
+            <h2>Edit Patient</h2>
+        }
+    </div>
+
+    @using (Html.BeginForm("Save", "Appointments"))
+    {
+        <div class="card-body">
+            <div class="row">
+                <div class="col-lg-6">
+
+                    <div class="mb-3">
+                        <label class="form-label">Patient Id</label>
+
+                        @Html.TextBoxFor(c => c.Appointment.PatientId, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(c => c.Appointment.PatientId)
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="mb-3">
+                        <label class="form-label">Date Time</label>
+
+                        <input type="datetime-local" name="Appointment.DateAndTime" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="mb-3">
+                        <label class="form-label">Doctor</label>
+
+                        @Html.DropDownListFor(c => c.Appointment.DoctorId, new SelectList(Model.Doctors, "Id", "Name"), "Select Doctor", new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="mb-3">
+                        @Html.CheckBoxFor(c => c.Appointment.WasPresent)<label>Was Present?</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <br />
+                    @Html.HiddenFor(c => c.Appointment.Id)
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    }
+</div>

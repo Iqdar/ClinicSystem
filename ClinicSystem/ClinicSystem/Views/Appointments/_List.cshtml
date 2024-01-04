@@ -1,0 +1,64 @@
+﻿
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+
+@{
+    List<Appointment> appointments = Model.appointmentsList;
+}
+
+<table id="dtList" class="table table-hover datatables">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Patient Id</th>
+            <th>Date Time</th>
+            <th>Was Present</th>
+            <th>Doctor Id</th>
+            <th class="td-actions text-right">Actions</th>
+        </tr>
+    </thead>
+    <tfoot style="display:table-row-group">
+        <tr>
+
+            <th>Id</th>
+            <th>Patient Id</th>
+            <th>Date Time</th>
+            <th>Was Present</th>
+            <th>Doctor Id</th>
+            <td> </td>
+        </tr>
+    </tfoot>
+    <tbody>
+        @foreach (var item in appointments)
+        {
+            <tr>
+
+                <td width="20px">@item.Id</td>
+                <td>@item.PatientId</td>
+                <td>@item.DateAndTime</td>
+                <td>@item.WasPresent</td>
+                <td>@item.DoctorId</td>
+
+                <td class="text-right">
+                    <a href="~/Appointments/Edit/@item.Id" class="btn btn-sm btn-info" title="Edit Role" target="_self"><i class="fa fa-pencil"></i></a>
+                    @*<a href="javascript:void(0)" class="btn btn-sm btn-danger @(item.LinkedRecords == 0 ? "delete" : "disabled")" data-id="@item.ITEM_ID" title="Delete" @(ViewBag.IsDelete != null && ViewBag.IsDelete ? "" : "style=display:none;")><i class="fa fa-trash"></i></a>*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    $(document).ready(function () {
+        _initDatatable('#dtList');
+
+        $('.dt-buttons').prepend('<button id="lnkNew" class="dt-button buttons-copy buttons-html5" tabindex="0" type="button" ><span>Add New</span></button>');
+
+        $('#lnkNew').click(function () {
+            window.location = '/Appointments/Add';
+        })
+    });
+
+</script>

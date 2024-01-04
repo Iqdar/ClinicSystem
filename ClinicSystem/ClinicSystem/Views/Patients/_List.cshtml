@@ -1,0 +1,56 @@
+﻿@{
+    List<Patient> patients = Model.patientsList;
+}
+
+<table id="dtList" class="table table-hover datatables">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Date of Birth</th>
+            <th class="td-actions text-right">Actions</th>
+        </tr>
+    </thead>
+    <tfoot style="display:table-row-group">
+        <tr>
+
+            <th>Id</th>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Date of Birth</th>
+            <td> </td>
+        </tr>
+    </tfoot>
+    <tbody>
+        @foreach (var item in patients)
+        {
+            <tr>
+
+                <td width="20px">@item.Id</td>
+                <td>@item.Name</td>
+                
+                <td>@item.Gender</td>
+                <td>@item.DateOfBirth</td>
+                <td class="text-right">
+                    <a href="~/Patients/Edit/@item.Id" class="btn btn-sm btn-info" title="Edit Role" target="_self"><i class="fa fa-pencil"></i></a>
+                    <a href="~/Appointments/Add/@item.Id" class="btn btn-sm btn-info" title="Edit Role" target="_self"><i class="fa fa-file"></i></a>
+                    @*<a href="javascript:void(0)" class="btn btn-sm btn-danger @(item.LinkedRecords == 0 ? "delete" : "disabled")" data-id="@item.ITEM_ID" title="Delete" @(ViewBag.IsDelete != null && ViewBag.IsDelete ? "" : "style=display:none;")><i class="fa fa-trash"></i></a>*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    $(document).ready(function () {
+        _initDatatable('#dtList');
+
+        $('.dt-buttons').prepend('<button id="lnkNew" class="dt-button buttons-copy buttons-html5" tabindex="0" type="button" ><span>Add New</span></button>');
+
+        $('#lnkNew').click(function () {
+            window.location = '/Patients/Add';
+        })
+    });
+
+</script>

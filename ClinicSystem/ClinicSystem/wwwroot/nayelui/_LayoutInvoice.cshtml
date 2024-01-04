@@ -1,0 +1,193 @@
+﻿@{ 
+   
+}
+
+
+<!doctype html>
+
+<html>
+<head>
+    <title>Report</title>
+    <meta name="GENERATOR" content="Microsoft Visual Studio .NET 7.1">
+    <meta name="CODE_LANGUAGE" content="Visual Basic .NET 7.1">
+    <meta name="vs_defaultClientScript" content="JavaScript">
+    <meta name="vs_targetSchema" content="http://schemas.microsoft.com/intellisense/ie5">
+
+
+
+    <link href="@Url.Content("~")Content/Report.css" rel="stylesheet" />
+    <!-- In your Razor view file (.cshtml) -->
+    <link rel="stylesheet" href="~/Content/font-awesome.min.css" />
+
+    <style type="text/css" media="print">
+
+        @@page {
+            size: letter;
+            margin: 5mm 5mm 10mm 5mm; /* this affects the margin in the printer settings */
+        }
+
+        #divParams {
+            display: none;
+        }
+
+
+    </style>
+
+    <style>
+        #divParams {
+            width: 200px;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: #47739f;
+            padding: 15px 25px 15px 15px;
+            border-radius: 5px;
+            border: 2px solid #47739f;
+            color: white;
+            font-family: monospace;
+            font-size: 15px;
+        }
+
+            #divParams input {
+                width: 100%;
+                margin-top: 5px;
+                margin-bottom: 10px;
+                border: 0px solid silver;
+                padding: 5px 5px 5px 5px;
+            }
+    </style>
+
+    @*@Styles.Render("~/Content/jeddah.css?v=" + System.DateTime.Now.Second.ToString())*@
+
+</head>
+<body id="body">
+
+
+    <table id="Outline" style="z-index: 101; left: 8px; top: 8px; border-collapse: collapse" bordercolor="silver" cellspacing="0" cellpadding="10" width="100%" align="center">
+        <tbody>
+            <tr valign="top">
+                <td width="100%" valign="top">
+
+
+
+                    <div class="divHeader">
+                        <div class="actionBar">
+                            <input class="btnPrint" onclick="CallPrint()" type="button" value="Print">
+                            <input class="btnPrint" onclick="window.close();" type="button" value="Close" style="float:right">
+                            <div style="clear: both;"></div>
+                        </div>
+                        <table id="Outline1" style="border-collapse: collapse" bordercolor="silver" cellspacing="0" cellpadding="3" width="100%" border="0">
+                            <tbody>
+                                <tr valign="top">
+                                    <td valign="top" width="100%" colspan="4" style="text-align:center">
+                                        <br>
+                                       @* <table width="100%">
+                                            <tbody>
+                                                <tr>
+                                                    <td style="text-align:left; line-height:1" width="250px">
+                                                        
+                                                     @if (companyInfo != null)
+                                                     {
+                                                     
+                                                        @companyInfo.CO_NAME_EN
+                                                        <small>
+                                                            <br />
+                                                            <b>Adress:</b> @companyInfo.CO_ADDRESS_EN
+                                                            <br />
+                                                            <b>Email:</b> @companyInfo.CO_EMAIL
+                                                            <br />
+                                                            <b>Phone: </b>@companyInfo.CO_PHONE
+                                                            <br />
+                                                            <b>CR No: </b>@companyInfo.CR_NO
+                                                        </small>
+                                                     }
+                                                    </td>
+                                                    <td style="text-align:center; " width="200px">
+                                                        <img style="-webkit-user-select: none" src="@Url.Content("~")assets/img/logo.png" width="100%" />
+                                                        <div class="clearfix"></div>
+                                                    </td>
+                                                    <td style="text-align:right;font-family: tahoma;line-height: 1;" id="tdPrint">
+
+
+                                                        <div dir="rtl">
+                                                            <span style="letter-spacing:1px">
+                                                                @companyInfo.CO_NAME_AR
+                                                            </span>
+                                                            <small>
+                                                                <br />
+                                                                <b>العنوان:</b>
+                                                                @companyInfo.CO_ADDRESS_AR
+
+                                                                <br />
+                                                                <b>البريد الإلكتروني:</b> @companyInfo.CO_EMAIL
+                                                                <br />
+                                                                <b>هاتف: </b><span dir="ltr">@companyInfo.CO_PHONE</span>
+                                                                <br />
+                                                                <b>رقم تسجيل الشركة: </b>@companyInfo.CR_NO
+                                                            </small>
+                                                        </div>
+                                                        <div style="display:none" width="200px">
+
+                                                        </div>
+                                                    </td>
+
+                                                </tr>
+                                            </tbody>
+                                        </table>*@
+
+                                        <hr style="border: 2px solid #0a1e60; margin-bottom:0px;">
+
+
+                                        @*<div class="ReportTitle" style="font-size: 25px;  ">
+                                            @RenderSection("ReportTitle", false)
+                                        </div>
+                                        <span style="text-align: center; font-size: 12px; text-align: center; ">
+                                            Print Date:
+
+                                            @DateTime.Now.ToString("dd-MMM-yyyy hh:mm tt")
+                                        </span>*@
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+
+                    </div>
+                    <div class="divData">
+                        @RenderBody()
+                    </div>
+
+
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <script src="@Url.Content("~")Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //CallPrint();
+        });
+        function CallPrint() {
+            window.print();
+
+        }
+
+    </script>
+    @RenderSection("script", false)
+
+    <style>
+
+        .divHeader {
+            position: initial !important;
+        }
+
+        .divData {
+            margin-top: initial !important;
+        }
+    </style>
+</body>
+</html>

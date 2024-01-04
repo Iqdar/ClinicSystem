@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div id="doctorList">
+</div>
+
+
+<div id="divList" class=""></div>
+@section scripts {
+    <script>
+        $(function () {
+            BindGrid();
+        });
+
+        function BindGrid() {
+            $('#divList').html('<h5 class="margin-0"><p><i class="fa fa-spinner fa-spin fa-fw"></i> Please wait while data is loading...</p></h5>');
+            $.ajax({
+                url: '/Doctors/_List',
+                success: function (data) {
+                    $('#divList').html(data);
+                }
+            })
+        };
+
+
+    </script>
+}

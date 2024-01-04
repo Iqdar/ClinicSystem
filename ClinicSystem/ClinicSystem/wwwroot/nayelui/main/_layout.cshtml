@@ -1,0 +1,524 @@
+﻿@{
+    string _lang =  System.Globalization.CultureInfo.CurrentCulture.ToString().ToUpper();
+}
+
+
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <title> VEERTX - POS </title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- #CSS Links -->
+    <!-- In your Razor view file (.cshtml) -->
+    <link rel="stylesheet" href="~/nayelui/assets/seed/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="~/nayelui/assets/seed/css/font-awesome.min.css" />
+
+    <link rel="stylesheet" href="~/nayelui/assets/seed/css/smartadmin-production.min.css" />
+    <link rel="stylesheet" href="~/nayelui/assets/seed/css/smartadmin-skins.min.css" />
+
+    <link rel="stylesheet" href="~/nayelui/assets/seed/css/general.css" />
+    <link rel="stylesheet" href="~/nayelui/assets/seed/css/custom.css" />
+    <link rel="stylesheet" href="/nayelui/assets/seed/css/arabicFont.css" />
+
+    @*@Styles.Render("~/content/purple.css")*@
+
+    <!-- #FAVICONS -->
+    @*<link rel="shortcut icon" href="@Url.Content("~")assets/seed/img/favicon/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="@Url.Content("~")assets/seed/img/favicon/favicon.ico" type="image/x-icon">*@
+
+    <!-- #GOOGLE FONT -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
+
+    <!-- #APP SCREEN / ICONS -->
+    <!-- Specifying a Webpage Icon for Web Clip
+         Ref: https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html -->
+    <link rel="apple-touch-icon" href="~/nayelui/assets/seed/img/splash/sptouch-icon-iphone.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="~/nayelui/assets/seed/img/splash/touch-icon-ipad.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="~/nayelui/assets/seed/img/splash/touch-icon-iphone-retina.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="~/nayelui/assets/seed/img/splash/touch-icon-ipad-retina.png">
+
+    <!-- iOS web-app metas : hides Safari UI Components and Changes Status Bar Appearance -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <!-- Startup image for web apps -->
+    <link rel="apple-touch-startup-image" href="~/nayelui/assets/seed/img/splash/ipad-landscape.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+    <link rel="apple-touch-startup-image" href="~/nayelui/assets/seed/img/splash/ipad-portrait.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+    <link rel="apple-touch-startup-image" href="~/nayelui/assets/seed/img/splash/iphone.png" media="screen and (max-device-width: 320px)">
+
+    <!-- In your Razor view file (.cshtml) -->
+    <link rel="stylesheet" href="~/nayelui/assets/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="~/nayelui/assets/css/buttons.dataTables.min.css" />
+    <link rel="stylesheet" href="~/nayelui/assets/css/rowReorder.dataTables.min.css" />
+
+
+    @if (_lang == "AR")
+    {
+        <link href="~/nayelui/assets/seed/css/rtl.css" rel="stylesheet" />
+    }
+
+
+</head>
+
+<!--
+
+TABLE OF CONTENTS.
+
+Use search to find needed section.
+
+===================================================================
+
+|  01. #CSS Links                |  all CSS links and file paths  |
+|  02. #FAVICONS                 |  Favicon links and file paths  |
+|  03. #GOOGLE FONT              |  Google font link              |
+|  04. #APP SCREEN / ICONS       |  app icons, screen backdrops   |
+|  05. #BODY                     |  body tag                      |
+|  06. #HEADER                   |  header tag                    |
+|  07. #PROJECTS                 |  project lists                 |
+|  08. #TOGGLE LAYOUT BUTTONS    |  layout buttons and actions    |
+|  09. #MOBILE                   |  mobile view dropdown          |
+|  10. #SEARCH                   |  search field                  |
+|  11. #NAVIGATION               |  left panel & navigation       |
+|  12. #MAIN PANEL               |  main panel                    |
+|  13. #MAIN CONTENT             |  content holder                |
+|  14. #PAGE FOOTER              |  page footer                   |
+|  15. #SHORTCUT AREA            |  dropdown shortcuts area       |
+|  16. #PLUGINS                  |  all scripts and plugins       |
+
+===================================================================
+
+-->
+<!-- #BODY -->
+<!-- Possible Classes
+
+    * 'smart-style-{SKIN#}'
+    * 'smart-rtl'         - Switch theme mode to RTL
+    * 'menu-on-top'       - Switch to top navigation (no DOM change required)
+    * 'no-menu'			  - Hides the menu completely
+    * 'hidden-menu'       - Hides the main menu but still accessable by hovering over left edge
+    * 'fixed-header'      - Fixes the header
+    * 'fixed-navigation'  - Fixes the main menu
+    * 'fixed-ribbon'      - Fixes breadcrumb
+    * 'fixed-page-footer' - Fixes footer
+    * 'container'         - boxed layout mode (non-responsive: will not work with fixed-navigation & fixed-ribbon)
+-->
+<body class="smart-style-4 fixed-page-footer @RenderSection("bodyClass",false)">
+
+    <!-- #HEADER -->
+    <header id="header">
+        <div id="logo-group">
+
+            <!-- PLACE YOUR LOGO HERE -->
+            <span id="logo"> <i class="fa fa-calculator"></i> <strong>POS</strong> <small style="font-size:11px">System</small> <img src="@Url.Content("~")assets/images/logo.png" alt=""> </span>
+            <!-- END LOGO PLACEHOLDER -->
+            <!-- Note: The activity badge color changes when clicked and resets the number to 0
+            Suggestion: You may want to set a flag when this happens to tick off all checked messages / notifications -->
+
+
+
+        </div>
+
+        <div class="project-context hidden-xs">
+            <h1>
+                @*<img src="/manage/assets/smartadmin/img/mbsclogot.png" style="height: 30px; display:none" class="minifiedLogo">*@
+                @*<a href="@Url.Content("~")" style="text-decoration:none;color:inherit;text-shadow: none;letter-spacing: 1px;"></a>*@
+                @RenderSection("pageTitle", false)
+            </h1>
+        </div>
+        <!-- #TOGGLE LAYOUT BUTTONS -->
+        <!-- pulled right: nav area -->
+        <div class="pull-right">
+
+            <!-- collapse menu button -->
+            <div id="hide-menu" class="btn-header pull-right">
+                <span> <a href="javascript:void(0);" data-action="toggleMenu" title="Collapse Menu"><i class="fa fa-reorder"></i></a> </span>
+            </div>
+            <!-- end collapse menu -->
+            <!-- #MOBILE -->
+            <!-- Top menu profile link : this shows only when top menu is active -->
+            <ul id="mobile-profile-img" class="header-dropdown-list hidden-xs padding-5">
+                <li class="">
+                    <a href="#" class="dropdown-toggle no-margin userdropdown" data-toggle="dropdown">
+                        <img src="~/nayelui/assets/seed/img/avatars/sunny.png" alt="User" />
+                    </a>
+                    <ul class="dropdown-menu pull-right">
+                        @*<li>
+            <a href="javascript:void(0);" class="padding-10 padding-top-0 padding-bottom-0"><i class="fa fa-cog"></i> Setting</a>
+        </li>
+        <li class="divider"></li>*@
+                        <li>
+                            <a href="~/nayelui/security/users/reset" class="padding-10 padding-top-5 padding-bottom-5"><i class="fa fa-edit fa-lg"></i> <strong>C</strong>hange Password</a>
+                        </li>
+                        <li class="divider"></li>
+                        @*<li>
+            <a href="javascript:void(0);" class="padding-10 padding-top-0 padding-bottom-0" data-action="toggleShortcut"><i class="fa fa-arrow-down"></i> <u>S</u>hortcut</a>
+        </li>
+        <li class="divider"></li>*@
+                        <li>
+                            <a href="javascript:void(0);" class="padding-10 padding-top-0 padding-bottom-0" data-action="launchFullscreen"><i class="fa fa-arrows-alt"></i> Full <u>S</u>creen</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="~/nayelui/Authentication/Logout" class="padding-10 padding-top-5 padding-bottom-5" data-action="userLogout"><i class="fa fa-sign-out fa-lg"></i> <strong><u>L</u>ogout</strong></a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <!-- logout button -->
+            <div id="logout" class="btn-header transparent pull-right">
+                <span> <a href="~/nayelui/Authentication/Logout" title="Sign Out" data-action="userLogout" data-logout-msg="You can improve your security further after logging out by closing this opened browser"><i class="fa fa-sign-out"></i></a> </span>
+            </div>
+            <!-- end logout button -->
+            <!-- search mobile button (this is hidden till mobile view port) -->
+            <div id="search-mobile" class="btn-header transparent pull-right">
+                <span> <a href="javascript:void(0)" title="Search"><i class="fa fa-search"></i></a> </span>
+            </div>
+            <!-- end search mobile button -->
+            <!-- #SEARCH -->
+            <!-- fullscreen button -->
+            <div id="fullscreen" class="btn-header transparent pull-right">
+                <span> <a href="javascript:void(0);" data-action="launchFullscreen" title="Full Screen"><i class="fa fa-arrows-alt"></i></a> </span>
+            </div>
+            <!-- end fullscreen button -->
+            <!-- fullscreen button -->
+            <div id="inbox" class="btn-header transparent pull-right">
+                <span> <a href="@Url.Content("~")home/changeculture?lang=@(_lang=="AR"?"EN":"AR")">
+                        <i class="fa " title="@(_lang=="AR"?"English":"Arabic")"></i>
+                        @(_lang == "AR" ? "EN" : "ع")</a> 
+                </span>
+            </div>
+            <!-- end fullscreen button -->
+
+        </div>
+        <!-- end pulled right: nav area -->
+
+    </header>
+    <!-- END HEADER -->
+    <!-- #NAVIGATION -->
+    <!-- Left panel : Navigation area -->
+    <!-- Note: This width of the aside area can be adjusted through LESS/SASS variables -->
+    <aside id="left-panel">
+
+        <!-- User info -->
+        <div class="login-info">
+            <span>
+                <!-- User image size is adjusted inside CSS, it should stay as is -->
+               
+                <a href="javascript:void(0);">
+                    <img src="~/nayelui/assets/seed/img/avatars/sunny.png" alt="me" class="online" />
+                    <span style="font-weight:bold">
+                        Welcome Admin
+                    </span>
+                    @*<i class="fa fa-angle-down fa-fw"></i>*@
+                </a>
+
+            </span>
+        </div>
+        <!-- end user info -->
+        @Html.Partial("main/_nav")
+        @*@{ Html.RenderAction("SidebarMenu", "Home", new { area = "" });}*@
+
+        <span class="minifyme" data-action="minifyMenu"> <i class="fa fa-arrow-circle-left hit"></i> </span>
+
+    </aside>
+    <!-- END NAVIGATION -->
+    <!-- #MAIN PANEL -->
+    <div id="main" role="main">
+
+        <!-- RIBBON -->
+        <div id="ribbon">
+
+            <!-- breadcrumb -->
+            <ol class="breadcrumb">
+                <li>Home</li>
+                <li>Blank</li>
+            </ol>
+            <!-- end breadcrumb -->
+            <!-- You can also add more buttons to the
+            ribbon for further usability
+
+            Example below:
+
+            <span class="ribbon-button-alignment pull-right" style="margin-right:25px">
+                <a href="#" id="search" class="btn btn-ribbon hidden-xs" data-title="search"><i class="fa fa-grid"></i> Change Grid</a>
+                <span id="add" class="btn btn-ribbon hidden-xs" data-title="add"  @(ViewBag.IsAdd!=null && ViewBag.IsAdd?"":"style=display:none;") ><i class="fa fa-plus"></i> Add</span>
+                <button id="search" class="btn btn-ribbon" data-title="search"><i class="fa fa-search"></i> <span class="hidden-mobile">Search</span></button>
+            </span> -->
+
+        </div>
+        <!-- END RIBBON -->
+        <!-- #MAIN CONTENT -->
+        <div class="">
+            @RenderBody()
+        </div>
+        <!-- end row -->
+        <!-- END #MAIN CONTENT -->
+
+    </div>
+    <!-- END #MAIN PANEL -->
+    <!-- #SHORTCUT AREA : With large tiles (activated via clicking user name tag)
+    Note: These tiles are completely responsive, you can add as many as you like -->
+    <div id="shortcut">
+        <ul>
+            <li>
+                <a href="javascript:void(0)" class="jarvismetro-tile big-cubes bg-color-blue"> <span class="iconbox"> <i class="fa fa-envelope fa-4x"></i> <span>Notifications <span class="label pull-right bg-color-darken">14</span></span> </span> </a>
+            </li>
+        </ul>
+    </div>
+    <!-- END SHORTCUT AREA -->
+    <!-- Modal -->
+    <div class="modal fade" id="generalModal" tabindex="-1" role="dialog" aria-labelledby="generalModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title pull-left" id="generalModalLabel">Modal title</h5>
+                    <button type="button" class="close pull-right" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="modal-body"></div>
+            </div>
+        </div>
+    </div>
+    <!--================================================== -->
+    <!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices)
+    <script data-pace-options='{ "restartOnRequestAfter": true }' src="js/plugin/pace/pace.min.js"></script>-->
+    <!-- #PLUGINS -->
+    <!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
+    @*@Scripts.Render("//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js")*@
+    <!-- In your Razor view file (.cshtml) -->
+    <script src="~/nayelui/assets/seed/js/libs/jquery-3.2.1.min.js"></script>
+    <script src="~/nayelui/assets/seed/js/libs/jquery-ui.min.js"></script>
+
+    <!-- IMPORTANT: APP CONFIG -->
+    <script src="~/nayelui/assets/seed/js/app.config.js"></script>
+    <!-- BOOTSTRAP JS -->
+    <script src="~/nayelui/assets/seed/js/bootstrap/bootstrap.min.js"></script>
+
+    <!--[if IE 8]>
+        <h1>Your browser is out of date, please update your browser by going to www.microsoft.com/download</h1>
+    <![endif]-->
+    <!-- MAIN APP JS FILE -->
+    <script src="~/nayelui/assets/seed/js/app.min.js"></script>
+
+    <!-- Plugin for DataTables.net -->
+    <script src="~/nayelui/assets/js/jquery.datatables.js"></script>
+    <script src="~/nayelui/assets/js/jquery.dataTables.min.js"></script>
+    <script src="~/nayelui/assets/js/dataTables.buttons.min.js"></script>
+    <script src="~/nayelui/assets/js/buttons.flash.min.js"></script>
+    <script src="~/nayelui/assets/js/jszip.min.js"></script>
+    <script src="~/nayelui/assets/js/pdfmake.min.js"></script>
+    <script src="~/nayelui/assets/js/vfs_fonts.js"></script>
+    <script src="~/nayelui/assets/js/buttons.html5.min.js"></script>
+    <script src="~/nayelui/assets/js/buttons.print.min.js"></script>
+    <script src="~/nayelui/assets/js/dataTables.rowReorder.min.js"></script>
+
+    <!-- Sweet Alert 2 plugin -->
+    <script src="~/nayelui/assets/sweetalert/sweetalert2.all.js"></script>
+    <script src="~/nayelui/assets/sweetalert/sweetalert2.js"></script>
+    <link rel="stylesheet" href="~/nayelui/assets/sweetalert/sweetalert2.css" />
+
+    <!-- Date Picker References -->
+    <link rel="stylesheet" href="~/nayelui/assets/JqueryDatepicker/css/jquery.calendars.picker.css" />
+    <script src="~/nayelui/assets/JqueryDatepicker/js/jquery.calendars.js"></script>
+    <script src="~/nayelui/assets/JqueryDatepicker/js/jquery.calendars.plus.js"></script>
+    <script src="~/nayelui/assets/JqueryDatepicker/js/jquery.plugin.js"></script>
+    <script src="~/nayelui/assets/JqueryDatepicker/js/jquery.calendars.picker.js"></script>
+    <script src="~/nayelui/assets/JqueryDatepicker/js/jquery.calendars.islamic.js"></script>
+
+    @*@Scripts.Render("~/Scripts/JqueryDatepicker/js/jquery.calendars-ar.js")*@
+    @*@Scripts.Render("~/Scripts/JqueryDatepicker/js/jquery.calendars.picker-ar.js")*@
+
+    @*------------------ Select 2 References | Begin ------------------*@
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
+    @RenderSection("scripts", false);
+
+    <script>
+
+        $(document).ready(function () {
+            initSettings();
+        });
+
+        function initSettings() {
+            var userName = localStorage.getItem('FULL_NAME');
+            $('.login-info span  span').text(userName);
+
+            initDatePicker();
+
+
+            $('.select2').select2();
+
+            $('input[type=file]').bind('change', function () {
+                var ext = $(this).val().split('.').pop().toLowerCase();
+                if (!(ext == "pdf" || ext == "jpg" || ext == "png")) {
+                    document.getElementById(this.id).value = "";
+                    showMsg("Invalid File Type !", "You may only upload JPG,PNG and PDF files. Please ensure your file is in one of these formats.", "error");
+                    isValidated = false;
+                }
+
+                if (this.files[0].size > 2097152) {
+                    document.getElementById(this.id).value = "";
+                    showMsg("File Too Large !", "File size is too large. The maximum file size is allowed is set to: 200MB", "error");
+                    isValidated = false;
+                };
+            });
+        }
+
+
+        function initDatePicker() {
+            //$('.DatePicker').calendarsPicker();
+            //$('.DatePicker').attr('readonly', 'readonly');
+            $('.DatePicker').css('cursor', 'default');
+
+            $('.DatePicker').calendarsPicker({
+                yearRange: 'c-40:c+6',
+                dateFormat: 'dd-M-yyyy',
+            });
+            $('.DatePickerHijri').calendarsPicker($.extend({
+                calendar: $.calendars.instance('Islamic', 'ar'),
+                yearRange: 'c-40:c+6',
+                dateFormat: 'dd-m-yyyy',
+            }, $.calendarsPicker.regionalOptions['ar']));
+
+
+            $('.DatePicker,.DatePickerHijri').attr('autocomplete', 'off');
+
+            $('.DatePicker').on("keypress paste",function (e) {
+                e.preventDefault();
+            })
+        }
+
+        function showMsg(_title, _html, _type) {
+            swal({
+                title: _title,
+                html: _html,
+                buttonsStyling: false,
+                confirmButtonClass: "btn btn-" + (_type == null ? 'success' : _type) + " btn-fill",
+                type: _type,
+                timer: 5000
+            });
+        };
+
+
+        function confirmDelete(_title, _html) {
+            return swal({
+                title: _title,
+                html: _html,
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, keep it',
+                confirmButtonClass: "btn btn-success btn-fill",
+                cancelButtonClass: "btn btn-danger btn-fill",
+                buttonsStyling: false
+            });
+        };
+
+        function confirmAction(_title, _html,_type,_confirmText,_cancelText) {
+            return swal({
+                title: _title,
+                html: _html,
+                type: _type,
+                showCancelButton: true,
+                confirmButtonText: _confirmText,
+                cancelButtonText: _cancelText,
+                confirmButtonClass: "btn btn-success btn-fill",
+                cancelButtonClass: "btn btn-danger btn-fill",
+                buttonsStyling: false
+            });
+        };
+
+        function _initDatatable(objID) {
+            // Setup - add a text input to each footer cell
+            $(objID + ' tfoot th').each(function () {
+                var title = $(this).text();
+                $(this).html('<input type="text" class="form-control input-sm" placeholder="Search ' + title + '" />');
+            });
+
+            // DataTable
+            var table = $(objID).DataTable({
+                //"order": [[0, "desc"]],
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'excel'
+                ]
+            });
+
+            // Apply the search
+            table.columns().every(function () {
+                var that = this;
+
+                $('input', this.footer()).on('keyup change', function () {
+                    if (that.search() !== this.value) {
+                        that
+                            .search(this.value)
+                            .draw();
+                    }
+                });
+            });
+        };
+
+
+
+
+        function _initDatatable_Lines(objID) {
+            // Setup - add a text input to each footer cell
+            $(objID + ' tfoot th').each(function () {
+                var title = $(this).text();
+                $(this).html('<input type="text" class="form-control input-sm" placeholder="Search ' + title + '" />');
+            });
+
+            // DataTable
+            var table = $(objID).DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'excel'
+                ]
+            });
+
+            // Apply the search
+            table.columns().every(function () {
+                var that = this;
+
+                $('input', this.footer()).on('keyup change', function () {
+                    if (that.search() !== this.value) {
+                        that
+                            .search(this.value)
+                            .draw();
+                    }
+                });
+            });
+        };
+
+
+        function showApprovalHistory(taskId, recordId) {
+            $('#generalModal .modal-body').html('<h5 class="margin-0"><p><i class="fa fa-spinner fa-spin fa-fw"></i> Please wait while data is loading...</p></h5>');
+            $('#generalModal').modal('show');
+            $('#generalModal .modal-title').html('Approval History');
+
+            $.ajax({
+                url: '@Url.Content("~")workflow/_approvalDetail?taskId=' + taskId + '&recordId=' + recordId,
+                success: function (data) {
+                    $('#generalModal .modal-body').html(data);
+                }
+            })
+        }
+    </script>
+
+    <style>
+        .calendars-popup {
+            z-index: 10000 !important;
+        }
+    </style>
+</body>
+
+</html>

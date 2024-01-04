@@ -1,0 +1,43 @@
+﻿
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model ClinicSystem.Models.Doctor;
+
+<div class="card">
+    <div class="card-header">
+        @if (Model.Id == 0)
+        {
+            <h2>New Doctor</h2>
+        }
+        else
+        {
+
+            <h2>Edit Doctor</h2>
+        }
+    </div>
+
+    @using (Html.BeginForm("Save", "Doctors"))
+    {
+        <div class="card-body">
+            <div class="row">
+                <div class="col-lg-6">
+
+                    <div class="mb-3">
+                        <label class="form-label">Name</label>
+
+                        @Html.TextBoxFor(c => c.Name, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(c => c.Name)
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <br />
+                    @Html.HiddenFor(m => m.Id)
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+
+        </div>
+    }
+</div>
