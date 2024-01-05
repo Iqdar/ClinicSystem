@@ -52,6 +52,14 @@ namespace ClinicSystem.Controllers
             return View("AppointmentForm", model);
         }
 
+        public IActionResult Delete(int id)
+        {
+            _appointments.Delete(id);
+            _appointments.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
         public IActionResult Save(Appointment appointment)
         {
             string err = "";

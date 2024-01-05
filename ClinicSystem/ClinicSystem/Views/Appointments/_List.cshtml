@@ -42,7 +42,9 @@
                 <td>@item.DoctorId</td>
 
                 <td class="text-right">
-                    <a href="~/Appointments/Edit/@item.Id" class="btn btn-sm btn-info" title="Edit Role" target="_self"><i class="fa fa-pencil"></i></a>
+                    <a href="~/Appointments/Edit/@item.Id" class="btn btn-sm btn-info" title="Edit" target="_self"><i class="fa fa-pencil"></i></a>
+
+                    <a href="~/Appointments/Delete/@item.Id" class="btn btn-sm btn-info" title="Delete" target="_self"><i class="fa fa-trash"></i></a>
                     @*<a href="javascript:void(0)" class="btn btn-sm btn-danger @(item.LinkedRecords == 0 ? "delete" : "disabled")" data-id="@item.ITEM_ID" title="Delete" @(ViewBag.IsDelete != null && ViewBag.IsDelete ? "" : "style=display:none;")><i class="fa fa-trash"></i></a>*@
                 </td>
             </tr>
@@ -60,5 +62,6 @@
             window.location = '/Appointments/Add';
         })
     });
+
 
 </script>

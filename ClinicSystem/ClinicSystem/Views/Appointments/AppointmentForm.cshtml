@@ -9,12 +9,12 @@
     <div class="card-header">
         @if (Model.Appointment.Id == 0)
         {
-            <h2>New Patient</h2>
+            <h2>New Appointment</h2>
         }
         else
         {
 
-            <h2>Edit Patient</h2>
+            <h2>Edit Appointment</h2>
         }
     </div>
 
@@ -49,6 +49,7 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="mb-3">
+                        <br />
                         @Html.CheckBoxFor(c => c.Appointment.WasPresent)<label>Was Present?</label>
                     </div>
                 </div>
