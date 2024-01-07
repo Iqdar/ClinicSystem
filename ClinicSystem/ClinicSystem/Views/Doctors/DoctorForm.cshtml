@@ -5,6 +5,21 @@
 
 @model ClinicSystem.Models.Doctor;
 
+
+<style>
+    .forms div div {
+        margin-bottom: 5px;
+    }
+
+    .cb {
+        width: 312px;
+    }
+
+    .forms button {
+        margin-top: 5px;
+    }
+</style>
+
 <div class="card">
     <div class="card-header">
         @if (Model.Id == 0)
@@ -20,7 +35,7 @@
 
     @using (Html.BeginForm("Save", "Doctors"))
     {
-        <div class="card-body">
+        <div class="card-body forms">
             <div class="row">
                 <div class="col-lg-6">
 

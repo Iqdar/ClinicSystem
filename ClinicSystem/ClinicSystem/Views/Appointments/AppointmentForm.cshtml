@@ -4,6 +4,15 @@
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
 
+<style>
+    .forms div div{
+        margin-bottom: 5px;
+    }
+
+    .cb{
+        width: 312px;
+    }
+</style>
 
 <div class="card">
     <div class="card-header">
@@ -20,11 +29,11 @@
 
     @using (Html.BeginForm("Save", "Appointments"))
     {
-        <div class="card-body">
+        <div class="card-body forms">
             <div class="row">
                 <div class="col-lg-6">
 
-                    <div class="mb-3">
+                    <div class="mb-5">
                         <label class="form-label">Patient Id</label>
 
                         @Html.TextBoxFor(c => c.Appointment.PatientId, new { @class = "form-control" })
@@ -48,9 +57,15 @@
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <div class="mb-3">
-                        <br />
-                        @Html.CheckBoxFor(c => c.Appointment.WasPresent)<label>Was Present?</label>
+                    <br />
+                    <div class="mb-3 row cb">
+                        <div class="col-xs-1">
+                            @Html.CheckBoxFor(c => c.Appointment.WasPresent)
+                        </div>
+                        <div class="col-xs-11" style="margin-top:2px;">
+
+                        <label class="form-check-label">Was Present?</label>
+                        </div>
                     </div>
                 </div>
             </div>
